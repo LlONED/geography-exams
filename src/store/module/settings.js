@@ -81,15 +81,11 @@ export default {
     },
 
     setAnswerField(state, field) {
-      state.answerField = state.fields.find(
-        (e) => e.toLowerCase() === field.slice(7).toLowerCase()
-      );
+      state.answerField = field;
     },
 
     setQuestionField(state, field) {
-      state.questionField = state.fields.find(
-        (e) => e.toLowerCase() === field.slice(7).toLowerCase()
-      );
+      state.questionField = field;
     },
 
     swapFields(state) {
