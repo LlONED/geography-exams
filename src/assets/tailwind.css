@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  @apply bg-zinc-900 text-white select-none;
+}
+
+img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+#app {
+  @apply flex flex-col justify-center items-center gap-9;
+}
+
+.cnt {
+  width: 800px;
+  @apply rounded;
+}
+
+@media screen and (max-width: 800px) {
+  .cnt {
+    width: 100%;
+  }
+}
+
+.system-button {
+  @apply w-full py-2;
+}
+
+.scrollbar::-webkit-scrollbar {
+  @apply w-1.5 rounded-lg;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  @apply rounded-lg bg-zinc-700;
+}
+
+.scrollbar::-webkit-scrollbar-corner {
+  @apply bg-opacity-0;
+}
