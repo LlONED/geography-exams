@@ -1,6 +1,6 @@
 <template>
   <setting-input-select
-    :description="localization.settingDescQuestionField"
+    :description="localization.settingDescAnswerField"
     :defaultOption="{
       view: localization[fieldConvertLocalization(answerField)],
       value: answerField,
