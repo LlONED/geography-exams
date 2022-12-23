@@ -60,7 +60,7 @@
   function clearLocalStorage() {
     if (confirm(localization.value.clearLocalStorageConfirmMessage)) {
       localStorage.clear();
-      window.location.href = window.location.href;
+      location.reload();
     }
   }
 </script>
