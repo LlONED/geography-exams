@@ -43,6 +43,7 @@
         :imgClass="'rounded max-w-full max-h-full'"
         :alt="props.question"
         :src="props.question"
+        @error="emit('questionError')"
       />
     </div>
     <div
@@ -115,6 +116,7 @@
 
   const emit = defineEmits({
     hintUsed: null,
+    questionError: null,
   });
 </script>
 

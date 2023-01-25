@@ -17,6 +17,7 @@
       :isEnd="isEnd"
       @hintUsed="hintUsed"
       @select="select"
+      @questionError="next"
     />
 
     <TheGameButtons

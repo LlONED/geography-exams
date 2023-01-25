@@ -18,6 +18,7 @@
       :question="props.question"
       :wiki="props.wiki"
       @hintUsed="emit('hintUsed')"
+      @questionError="emit('questionError')"
     />
 
     <TheAnswerField
@@ -111,5 +112,6 @@
   const emit = defineEmits({
     select: null,
     hintUsed: null,
+    questionError: null,
   });
 </script>

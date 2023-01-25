@@ -33,6 +33,10 @@
       },
     },
 
+    emits: {
+      error: null,
+    },
+
     methods: {
       loadImage(src = "") {
         this.status = loadingStatusType.Loading;
@@ -46,6 +50,7 @@
 
         img.onerror = () => {
           this.status = loadingStatusType.Error;
+          this.$emit("error");
         };
       },
     },
