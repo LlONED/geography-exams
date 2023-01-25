@@ -32,6 +32,16 @@
       />
     </setting-item>
 
+    <setting-item :description="localization.nextQuestionDelay">
+      <v-input-number
+        class="bg-zinc-800 w-[165px]"
+        min="0"
+        :placeholder="localization.nextQuestionDelay"
+        :value="autoNextDelay"
+        @input="setAutoNextDelay"
+      />
+    </setting-item>
+
     <v-button type="danger" class="system-button" @click="clearLocalStorage">
       {{ localization.clearLocalStorage }}
     </v-button>
@@ -53,8 +63,8 @@
   import { mapGetters, mapMutations } from "@/hooks/useMapsVuex";
 
   const { localization } = mapGetters("localization");
-  const { hintsCount, answersCount } = mapGetters("settings");
-  const { swapFields, setHintsCount, setAnswersCount } =
+  const { hintsCount, answersCount, autoNextDelay } = mapGetters("settings");
+  const { swapFields, setHintsCount, setAnswersCount, setAutoNextDelay } =
     mapMutations("settings");
 
   function clearLocalStorage() {

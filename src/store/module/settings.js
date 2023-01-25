@@ -12,6 +12,7 @@ export default {
     countryOrder: countryOrderType.Random,
     countryOrders: Object.values(countryOrderType),
     answersCount: 4,
+    autoNextDelay: 0,
   }),
 
   getters: {
@@ -61,6 +62,10 @@ export default {
     answersCount(state) {
       return state.answersCount;
     },
+
+    autoNextDelay(state) {
+      return state.autoNextDelay;
+    },
   },
 
   mutations: {
@@ -101,7 +106,11 @@ export default {
     },
 
     setAnswersCount(state, count = 0) {
-      return (state.answersCount = count);
+      state.answersCount = count;
+    },
+
+    setAutoNextDelay(state, delay = 0) {
+      state.autoNextDelay = delay;
     },
   },
 

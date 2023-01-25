@@ -4,6 +4,16 @@
       {{ localization.restart }}
     </v-button>
 
+    <v-button-delay
+      v-else-if="autoNextDelay !== 0"
+      class="system-button"
+      :delay="autoNextDelay"
+      :disabled="props.isNextDisabled"
+      @click="emits('next')"
+    >
+      {{ localization.next }}
+    </v-button-delay>
+
     <v-button
       v-else
       class="system-button"
@@ -23,6 +33,7 @@
   import { mapGetters } from "@/hooks/useMapsVuex";
 
   const { localization } = mapGetters("localization");
+  const { autoNextDelay } = mapGetters("settings");
 
   const props = defineProps({
     isEnd: {
