@@ -1,8 +1,8 @@
 {
   "ru": {
-    "Test123": "Тееест"
+    "nextQuestionDelay": "Задержка перед автоматическим переключением"
   },
   "en": {
-    "Test123": "Teeeeest"
+    "nextQuestionDelay": "Delay before automatic switching"
   }
 }

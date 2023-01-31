@@ -503,5 +503,6 @@
   "location": "Posizione",
   "Mariehamn": "Mariehamn",
   "search": "ricerca",
-  "Nuuk": "Nuuk"
+  "Nuuk": "Nuuk",
+  "nextQuestionDelay": "Ritardo prima della commutazione automatica"
 }

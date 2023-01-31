@@ -1370,7 +1370,7 @@
     "flag": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Flag_of_Macau.svg/700px-Flag_of_Macau.svg.png",
     "COA": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Regional_Emblem_of_Macau.svg/500px-Regional_Emblem_of_Macau.svg.png",
     "map": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Macau_locator_map.svg/500px-Macau_locator_map.svg.png",
-    "capital": "Form_of_government",
+    "capital": null,
     "domain": ".mo",
     "location": "Asia"
   },
