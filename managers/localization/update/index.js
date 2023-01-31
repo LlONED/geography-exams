@@ -14,7 +14,7 @@ module.exports = async function update({
     u: {
       async logic({ config, localization, lang }) {
         localization = { ...localization };
-        config = await translateConfig(config);
+        config = await translateConfig({ config, defaultLang });
 
         for (const key in config[lang]) {
           const translate = config[lang][key];

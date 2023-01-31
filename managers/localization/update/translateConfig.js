@@ -1,7 +1,7 @@
 const translate = require("../../translate");
 const concatWordPerN = require("../../translate/concatWordPerN");
 
-export default async function translateConfig(config) {
+module.exports = async function translateConfig({ config, defaultLang }) {
   for (const lang in config) {
     if (config[lang] !== null) continue;
     config[lang] = {};
@@ -22,4 +22,4 @@ export default async function translateConfig(config) {
   }
 
   return config;
-}
+};
