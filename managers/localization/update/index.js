@@ -1,44 +1,32 @@
 const path = require("path");
 const fs = require("fs");
+const translateConfig = require("./translateConfig");
 
-module.exports = function update({ args = [], localizationFolderPath = "" }) {
-  const currentFolderPath = __dirname;
-  const type = require(path.join(currentFolderPath, "type.js"));
-  const config = require(path.join(currentFolderPath, "config.js"));
+const defaultLang = "en";
+
+module.exports = async function update({
+  args = [],
+  localizationFolderPath = "",
+}) {
+  const config = require(path.join(__dirname, "temp.json"));
+
   const actions = {
-    add: {
-      logic({ config, localization, lang }) {
+    u: {
+      async logic({ config, localization, lang }) {
         localization = { ...localization };
+        config = await translateConfig(config);
 
-        switch (config.type) {
-          case type.Inline: {
-            for (const key in config.data) {
-              const translate = config.data[key][lang];
+        for (const key in config[lang]) {
+          const translate = config[lang][key];
 
-              if (translate === undefined) {
-                throw Error(`(${lang}): key "${key}" not found`);
-              }
-
-              localization[key] = translate;
-            }
-
-            return localization;
+          if (translate === undefined) {
+            throw Error(`(${lang}): key "${key}" not found`);
           }
 
-          case type.Mult: {
-            for (const key in config.data[lang]) {
-              const translate = config.data[lang][key];
-
-              if (translate === undefined) {
-                throw Error(`(${lang}): key "${key}" not found`);
-              }
-
-              localization[key] = translate;
-            }
-
-            return localization;
-          }
+          localization[key] = translate;
         }
+
+        return localization;
       },
     },
 
@@ -46,7 +34,7 @@ module.exports = function update({ args = [], localizationFolderPath = "" }) {
       logic({ localization, config }) {
         localization = { ...localization };
 
-        for (const key in config.data) {
+        for (const key in config[defaultLang]) {
           delete localization[key];
         }
 
@@ -65,28 +53,30 @@ module.exports = function update({ args = [], localizationFolderPath = "" }) {
         .join(" or ")} (without ")`
     );
 
-  if (Object.values(type).includes(config.type) === false)
-    throw Error(
-      `"${config.type}" is an invalid type (${path.join(
-        currentFolderPath,
-        "config.js"
-      )})\n\nValid types: ${Object.keys(type).join(" or ")}`
-    );
+  if (config.en === undefined) {
+    throw Error(`"en" lang is required`);
+  }
 
   const localizationFiles = fs.readdirSync(path.join(localizationFolderPath));
+
+  for (const file of localizationFiles) {
+    const lang = file.slice(0, 2);
+
+    if (config[lang] === undefined) config[lang] = null;
+  }
 
   for (const file of localizationFiles) {
     const lang = file.split(".")[0];
     const filePath = path.join(localizationFolderPath, file);
 
     try {
-      const localization = action.logic({
+      const data = await action.logic({
         config,
         lang,
         localization: JSON.parse(fs.readFileSync(filePath).toString()),
       });
 
-      fs.writeFileSync(filePath, JSON.stringify(localization));
+      fs.writeFileSync(filePath, JSON.stringify(data));
     } catch (e) {
       console.log(e);
     }
